@@ -1,0 +1,436 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 2400" width="2400" height="2400" style="background: #070b14; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, monospace;">
+  <defs>
+    <!-- Background Grid -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#101726" stroke-width="1"/>
+    </pattern>
+    <pattern id="subgrid" width="200" height="200" patternUnits="userSpaceOnUse">
+      <path d="M 200 0 L 0 0 0 200" fill="none" stroke="#162035" stroke-width="1.5"/>
+    </pattern>
+
+    <!-- Gradients -->
+    <linearGradient id="grad-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#0891b2" stop-opacity="0.04"/>
+    </linearGradient>
+    <linearGradient id="grad-red" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#b91c1c" stop-opacity="0.04"/>
+    </linearGradient>
+    <linearGradient id="grad-amber" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#d97706" stop-opacity="0.04"/>
+    </linearGradient>
+    <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#6d28d9" stop-opacity="0.04"/>
+    </linearGradient>
+    <linearGradient id="grad-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#059669" stop-opacity="0.04"/>
+    </linearGradient>
+    <linearGradient id="grad-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0.04"/>
+    </linearGradient>
+
+    <!-- Filters -->
+    <filter id="glow-red" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="100%" height="100%" fill="#070b14"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <rect width="100%" height="100%" fill="url(#subgrid)"/>
+
+  <!-- TOP HEADER BANNER -->
+  <rect x="60" y="50" width="2280" height="120" rx="14" fill="#0d1527" stroke="#1e293b" stroke-width="2"/>
+  <circle cx="120" cy="110" r="26" fill="#ef4444" opacity="0.2"/>
+  <path d="M 105 110 L 135 110 M 120 95 L 120 125" stroke="#ef4444" stroke-width="3.5" stroke-linecap="round"/>
+  
+  <text x="165" y="102" fill="#ffffff" font-size="34" font-weight="900" letter-spacing="2">TYRETRACE <tspan fill="#ef4444">SYSTEM DESIGN ARCHITECTURE</tspan></text>
+  <text x="165" y="136" fill="#94a3b8" font-size="16" font-weight="600" letter-spacing="1.2">END-TO-END PHYSICS-INFORMED TYRE DEGRADATION INTELLIGENCE PIPELINE &amp; DUAL DIGITAL TWIN</text>
+
+  <rect x="1860" y="78" width="440" height="64" rx="8" fill="#111c35" stroke="#253556" stroke-width="1.5"/>
+  <text x="1885" y="116" fill="#38bdf8" font-size="15" font-weight="700" font-family="monospace">TELEMETRY RATE: 20 Hz | LATENCY &lt; 4ms</text>
+
+  <!-- ================= LEVEL 1: INGESTION & PHYSICS DIGITAL TWIN ================= -->
+  
+  <!-- 1. TELEMETRY INGESTION (X: 60, Y: 200, W: 1110, H: 480) -->
+  <g transform="translate(60, 200)">
+    <rect width="1110" height="480" rx="12" fill="url(#grad-cyan)" stroke="#06b6d4" stroke-width="2"/>
+    <rect x="0" y="0" width="1110" height="56" rx="12" fill="#082f49" stroke="#06b6d4" stroke-width="1.5"/>
+    <text x="30" y="36" fill="#38bdf8" font-size="18" font-weight="900" letter-spacing="1.5">1. TELEMETRY INGESTION LAYER (FastF1 Gateway)</text>
+    
+    <g transform="translate(30, 80)">
+      <rect width="500" height="240" rx="8" fill="#07192c" stroke="#0e3b5e" stroke-width="1"/>
+      <text x="20" y="30" fill="#38bdf8" font-size="14" font-weight="800">Telemetry Streams (20 Hz Ingestion):</text>
+      <text x="20" y="60" fill="#bae6fd" font-size="13" font-family="monospace">• Speed v(t) [km/h → m/s conversion]</text>
+      <text x="20" y="86" fill="#bae6fd" font-size="13" font-family="monospace">• Throttle Input [0..100% pedal]</text>
+      <text x="20" y="112" fill="#bae6fd" font-size="13" font-family="monospace">• Brake Input [0/1 or % pressure], Gear, RPM</text>
+      <text x="20" y="138" fill="#bae6fd" font-size="13" font-family="monospace">• DRS Status [0=Closed, 1=Active]</text>
+      <text x="20" y="164" fill="#bae6fd" font-size="13" font-family="monospace">• World GPS Coordinates (X, Y, Z) &amp; Distance</text>
+      <text x="20" y="190" fill="#bae6fd" font-size="13" font-family="monospace">• Environmental State: T_track, T_air, Rain flag</text>
+      <text x="20" y="216" fill="#bae6fd" font-size="13" font-family="monospace">• Session Meta: Driver, Team, Compound, Tyre Age</text>
+    </g>
+
+    <g transform="translate(560, 80)">
+      <rect width="510" height="240" rx="8" fill="#1e1b4b" stroke="#4338ca" stroke-width="1"/>
+      <text x="20" y="30" fill="#a5b4fc" font-size="14" font-weight="800">Ground-Truth Rule &amp; Schema Contract:</text>
+      <text x="20" y="60" fill="#ffffff" font-size="13" font-weight="700">Strict No-Fabrication Principle:</text>
+      <text x="20" y="86" fill="#c7d2fe" font-size="12.5">FastF1 does not broadcast internal tyre carcass temp,</text>
+      <text x="20" y="108" fill="#c7d2fe" font-size="12.5">core pressure, or individual wheel speeds.</text>
+      <text x="20" y="136" fill="#fbbf24" font-size="12.5" font-family="monospace">→ Fields are explicitly tagged UNAVAILABLE (None)</text>
+      <text x="20" y="158" fill="#c7d2fe" font-size="12">in official replay mode (Simulated only in Demo mode).</text>
+      
+      <rect x="20" y="175" width="470" height="50" rx="6" fill="#312e81" stroke="#6366f1" stroke-width="1"/>
+      <text x="35" y="205" fill="#ffffff" font-size="12.5" font-family="monospace">TelemetryFrame = { vehicle, 4x tyres, env, dt }</text>
+    </g>
+
+    <rect x="30" y="340" width="1040" height="110" rx="8" fill="#082f49" stroke="#0284c7" stroke-width="1"/>
+    <text x="50" y="372" fill="#38bdf8" font-size="14" font-weight="800">Ingestion Pipeline Normalization &amp; Rate Limiting:</text>
+    <text x="50" y="400" fill="#e0f2fe" font-size="13" font-family="monospace">Continuous real-time queue at 20 Hz (50ms intervals). Handles NaN values, missing frames, and</text>
+    <text x="50" y="424" fill="#e0f2fe" font-size="13" font-family="monospace">temporal interpolation to guarantee strictly monotonic timestamps t_k &gt; t_{k-1}.</text>
+  </g>
+
+  <!-- 2. PHYSICS DIGITAL TWIN (X: 1230, Y: 200, W: 1110, H: 480) -->
+  <g transform="translate(1230, 200)">
+    <rect width="1110" height="480" rx="12" fill="url(#grad-red)" stroke="#ef4444" stroke-width="2"/>
+    <rect x="0" y="0" width="1110" height="56" rx="12" fill="#450a0a" stroke="#ef4444" stroke-width="1.5"/>
+    <text x="30" y="36" fill="#fca5a5" font-size="18" font-weight="900" letter-spacing="1.5">2. PHYSICS DIGITAL TWIN (Newtonian Dynamic Force Balance)</text>
+
+    <!-- Equations Box Left -->
+    <g transform="translate(30, 80)">
+      <rect width="570" height="250" rx="8" fill="#1c0808" stroke="#7f1d1d" stroke-width="1.5"/>
+      <text x="20" y="30" fill="#f87171" font-size="14" font-weight="800">GOVERNING PHYSICAL EQUATIONS:</text>
+      
+      <text x="20" y="62" fill="#ffffff" font-size="14.5" font-weight="800" font-family="monospace">F_net = F_traction - F_drag - F_rolling - F_brake</text>
+      <text x="20" y="92" fill="#fca5a5" font-size="14.5" font-weight="800" font-family="monospace">a_expected = F_net / m</text>
+      
+      <path d="M 20 106 L 550 106" stroke="#450a0a" stroke-width="1"/>
+      
+      <text x="20" y="130" fill="#fecaca" font-size="13" font-family="monospace">F_drag    = 0.5 · ρ · C_d · A · v²</text>
+      <text x="20" y="156" fill="#fecaca" font-size="13" font-family="monospace">F_rolling = C_rr · m · g</text>
+      <text x="20" y="182" fill="#fecaca" font-size="13" font-family="monospace">ΔF_z      = (m · a_x · h) / L  (Longitudinal Load Transfer)</text>
+      <text x="20" y="208" fill="#fecaca" font-size="13" font-family="monospace">μ_eff     = μ₀ · (1 - D) · f_temp · f_press  (Grip Factor)</text>
+      <text x="20" y="234" fill="#fecaca" font-size="12" font-family="monospace">m_t · c_p · (dT/dt) = P_heat - P_loss  (Tyre Thermal Balance)</text>
+    </g>
+
+    <!-- Calibrated Constants Right -->
+    <g transform="translate(620, 80)">
+      <rect width="460" height="250" rx="8" fill="#2b0d0d" stroke="#991b1b" stroke-width="1"/>
+      <text x="20" y="30" fill="#fca5a5" font-size="14" font-weight="800">Calibrated Car Specs &amp; Constants:</text>
+      <text x="20" y="60" fill="#ffffff" font-size="12.5" font-family="monospace">• Total Mass m          = 798 kg (FIA Reg)</text>
+      <text x="20" y="86" fill="#ffffff" font-size="12.5" font-family="monospace">• Wheelbase L           = 3.60 m</text>
+      <text x="20" y="112" fill="#ffffff" font-size="12.5" font-family="monospace">• Frontal Area A        = 1.50 m²</text>
+      <text x="20" y="138" fill="#ffffff" font-size="12.5" font-family="monospace">• Air Density ρ         = 1.225 kg/m³ (ISA)</text>
+      <text x="20" y="164" fill="#ffffff" font-size="12.5" font-family="monospace">• Baseline Drag C_d     = 1.00 (0.75 w/ DRS)</text>
+      <text x="20" y="190" fill="#ffffff" font-size="12.5" font-family="monospace">• Rolling Coeff C_rr    = 0.012</text>
+      <text x="20" y="216" fill="#ffffff" font-size="12.5" font-family="monospace">• Centre of Gravity h   = 0.31 m</text>
+    </g>
+
+    <rect x="30" y="350" width="1050" height="100" rx="8" fill="#1c0808" stroke="#7f1d1d" stroke-width="1"/>
+    <text x="50" y="382" fill="#f87171" font-size="14" font-weight="800">TwinEngineOutput Schema:</text>
+    <text x="50" y="410" fill="#ffffff" font-size="13" font-family="monospace">Outputs a_expected, F_drag, F_rolling, F_traction, F_normal, Provenance: [MEASURED, DERIVED, MODELLED]</text>
+    <text x="50" y="432" fill="#cbd5e1" font-size="12">Solves instantaneous physical expectation of vehicle acceleration under ideal tyre traction conditions.</text>
+  </g>
+
+  <!-- CONNECTOR 1+2 -> LEVEL 2 -->
+  <path d="M 615 680 L 615 725 L 1200 725 L 1200 750" fill="none" stroke="#06b6d4" stroke-width="2.5" stroke-dasharray="6,6"/>
+  <path d="M 1785 680 L 1785 725 L 1200 725" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="6,6"/>
+
+  <!-- ================= LEVEL 2: RESIDUAL & CONFOUNDER ENGINES ================= -->
+
+  <!-- 3. RESIDUAL ENGINE (X: 60, Y: 750, W: 1110, H: 480) -->
+  <g transform="translate(60, 750)">
+    <rect width="1110" height="480" rx="12" fill="url(#grad-amber)" stroke="#f59e0b" stroke-width="2"/>
+    <rect x="0" y="0" width="1110" height="56" rx="12" fill="#451a03" stroke="#f59e0b" stroke-width="1.5"/>
+    <text x="30" y="36" fill="#fde68a" font-size="18" font-weight="900" letter-spacing="1.5">3. ACTUAL-VS-EXPECTED RESIDUAL ENGINE</text>
+
+    <!-- Equations Left -->
+    <g transform="translate(30, 80)">
+      <rect width="520" height="250" rx="8" fill="#201004" stroke="#78350f" stroke-width="1.5"/>
+      <text x="20" y="30" fill="#fbbf24" font-size="14" font-weight="800">DIFFERENTIATION &amp; RESIDUAL MATH:</text>
+      
+      <text x="20" y="62" fill="#ffffff" font-size="14.5" font-weight="800" font-family="monospace">a_actual = Δv / Δt = (v_t - v_{t-1}) / Δt</text>
+      <text x="20" y="92" fill="#fde68a" font-size="14.5" font-weight="800" font-family="monospace">residual r = a_actual - a_expected</text>
+      <text x="20" y="122" fill="#fde68a" font-size="14.5" font-weight="800" font-family="monospace">r_norm = r / max(|a_expected|, ε)</text>
+      
+      <path d="M 20 136 L 500 136" stroke="#451a03" stroke-width="1"/>
+      <text x="20" y="160" fill="#fcd34d" font-size="13" font-family="monospace">Rolling Window Temporal Features (W=15):</text>
+      <text x="20" y="186" fill="#fef3c7" font-size="12.5" font-family="monospace">• r_mean = (1/W) ∑ r_i       • r_std = StdDev(r)</text>
+      <text x="20" y="212" fill="#fef3c7" font-size="12.5" font-family="monospace">• r_slope = LinReg(r, t)     • persistence_ratio</text>
+      <text x="20" y="236" fill="#d97706" font-size="11.5" font-family="monospace">persistence = count(r &lt; -threshold) / W</text>
+    </g>
+
+    <!-- Quality Filters Right -->
+    <g transform="translate(570, 80)">
+      <rect width="510" height="250" rx="8" fill="#1a0f05" stroke="#92400e" stroke-width="1"/>
+      <text x="20" y="30" fill="#fbbf24" font-size="14" font-weight="800">Data Quality &amp; Jitter Guards:</text>
+      <text x="20" y="60" fill="#ffffff" font-size="13" font-family="monospace">• Reject Δt ≤ 0 or Δt &lt; 0.001s (Sub-ms Jitter)</text>
+      <text x="20" y="88" fill="#ffffff" font-size="13" font-family="monospace">• Reject Acceleration Spikes: |a_actual| &gt; 60 m/s²</text>
+      <text x="20" y="116" fill="#ffffff" font-size="13" font-family="monospace">• Flag Status: VALID | INVALID_DT | OUTLIER</text>
+      
+      <rect x="20" y="140" width="470" height="95" rx="6" fill="#381803" stroke="#b45309" stroke-width="1"/>
+      <text x="35" y="165" fill="#fcd34d" font-size="12.5" font-weight="800">CRITICAL SCIENTIFIC DISTINCTION:</text>
+      <text x="35" y="188" fill="#ffffff" font-size="12.5">Residual ≠ Tyre Degradation!</text>
+      <text x="35" y="210" fill="#fed7aa" font-size="12">Residual is purely the unexplained delta in car motion.</text>
+      <text x="35" y="226" fill="#fde68a" font-size="11.5">Degradation must be decoupled from confounders downstream.</text>
+    </g>
+
+    <rect x="30" y="350" width="1050" height="100" rx="8" fill="#201004" stroke="#78350f" stroke-width="1"/>
+    <text x="50" y="382" fill="#fbbf24" font-size="14" font-weight="800">Engine Output: ResidualFrame</text>
+    <text x="50" y="410" fill="#ffffff" font-size="13" font-family="monospace">residual, r_norm, r_mean, r_std, r_slope, persistence, is_valid</text>
+    <text x="50" y="432" fill="#fde68a" font-size="12">Broadcasts to Confounder Filter and ML Feature Aggregator simultaneously.</text>
+  </g>
+
+  <!-- 4. CONFOUNDER ANALYSIS ENGINE (X: 1230, Y: 750, W: 1110, H: 480) -->
+  <g transform="translate(1230, 750)">
+    <rect width="1110" height="480" rx="12" fill="url(#grad-purple)" stroke="#8b5cf6" stroke-width="2"/>
+    <rect x="0" y="0" width="1110" height="56" rx="12" fill="#2e1065" stroke="#8b5cf6" stroke-width="1.5"/>
+    <text x="30" y="36" fill="#ddd6fe" font-size="18" font-weight="900" letter-spacing="1.5">4. CONFOUNDER ANALYSIS ENGINE (10 Deterministic Physics Filters)</text>
+
+    <!-- 10 Rules Left -->
+    <g transform="translate(30, 80)">
+      <rect width="570" height="250" rx="8" fill="#1e0c38" stroke="#5b21b6" stroke-width="1.5"/>
+      <text x="20" y="28" fill="#c4b5fd" font-size="13.5" font-weight="800">10 PHYSICAL CONFOUNDER RULES:</text>
+      
+      <text x="20" y="52" fill="#e9d5ff" font-size="11.5" font-family="monospace">1. DRS Active          : Aerodynamic drag model distortion</text>
+      <text x="20" y="72" fill="#e9d5ff" font-size="11.5" font-family="monospace">2. Heavy Braking       : Severe pitch &amp; threshold transient dynamic</text>
+      <text x="20" y="92" fill="#e9d5ff" font-size="11.5" font-family="monospace">3. Full Throttle       : Powertrain clipping &amp; wheelspin limits</text>
+      <text x="20" y="112" fill="#e9d5ff" font-size="11.5" font-family="monospace">4. High Speed (&gt;250kph): Aero sensitivity dominates tyre grip</text>
+      <text x="20" y="132" fill="#e9d5ff" font-size="11.5" font-family="monospace">5. Transient Jerk      : Rapid d(throttle)/dt, d(brake)/dt spikes</text>
+      <text x="20" y="152" fill="#e9d5ff" font-size="11.5" font-family="monospace">6. Tyre Age            : Fresh tyres (low lap prior) suppress false wear</text>
+      <text x="20" y="172" fill="#e9d5ff" font-size="11.5" font-family="monospace">7. Compound Type       : Soft (rapid wear) vs Hard (linear decay)</text>
+      <text x="20" y="192" fill="#e9d5ff" font-size="11.5" font-family="monospace">8. Environmental Shift : Asphalt &amp; air temp thermal gradient</text>
+      <text x="20" y="212" fill="#e9d5ff" font-size="11.5" font-family="monospace">9. Rainfall            : Wet track hydrodynamic friction shift</text>
+      <text x="20" y="232" fill="#e9d5ff" font-size="11.5" font-family="monospace">10. Data Quality       : Numerical jitter or outlier flags</text>
+    </g>
+
+    <!-- Scores & Outputs Right -->
+    <g transform="translate(620, 80)">
+      <rect width="460" height="250" rx="8" fill="#2e1065" stroke="#7c3aed" stroke-width="1"/>
+      <text x="20" y="30" fill="#c4b5fd" font-size="14" font-weight="800">Confounder Metrics &amp; Quality:</text>
+      
+      <rect x="20" y="50" width="420" height="75" rx="6" fill="#4c1d95" stroke="#8b5cf6" stroke-width="1"/>
+      <text x="35" y="75" fill="#ffffff" font-size="13" font-weight="800" font-family="monospace">non_tyre_explanation_score ∈ [0, 1]</text>
+      <text x="35" y="95" fill="#ddd6fe" font-size="11">(How much residual is explained by DRS, Aero, Braking)</text>
+      <text x="35" y="115" fill="#38bdf8" font-size="13" font-weight="800" font-family="monospace">tyre_evidence_quality ∈ [0, 1]</text>
+
+      <text x="20" y="155" fill="#c4b5fd" font-size="13" font-weight="800">Observation Classification:</text>
+      <text x="20" y="180" fill="#4ade80" font-size="12" font-family="monospace">• STRONG_TYRE_EVIDENCE  (Pure cornering/traction)</text>
+      <text x="20" y="202" fill="#38bdf8" font-size="12" font-family="monospace">• MODERATE_EVIDENCE     (Minor aerodynamic noise)</text>
+      <text x="20" y="224" fill="#f87171" font-size="12" font-family="monospace">• NON_TYRE_DOMINANT     (Attenuated / Suppressed)</text>
+    </g>
+
+    <rect x="30" y="350" width="1050" height="100" rx="8" fill="#1e0c38" stroke="#5b21b6" stroke-width="1"/>
+    <text x="50" y="382" fill="#c4b5fd" font-size="14" font-weight="800">Engine Output: ConfounderFrame</text>
+    <text x="50" y="410" fill="#ffffff" font-size="13" font-family="monospace">non_tyre_score, evidence_quality, active_confounders[], classification</text>
+    <text x="50" y="432" fill="#ddd6fe" font-size="12">Guarantees that aerodynamic changes or braking zones are never falsely attributed to tyre degradation.</text>
+  </g>
+
+  <!-- CONNECTOR 3+4 -> LEVEL 3 -->
+  <path d="M 615 1230 L 615 1275 L 1200 1275 L 1200 1300" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="6,6"/>
+  <path d="M 1785 1230 L 1785 1275 L 1200 1275" fill="none" stroke="#8b5cf6" stroke-width="2.5" stroke-dasharray="6,6"/>
+
+  <!-- ================= LEVEL 3: TDI SYNTHESIS & MACHINE LEARNING MODEL ================= -->
+
+  <!-- 5. TDI SCORING ENGINE (X: 60, Y: 1300, W: 1110, H: 480) -->
+  <g transform="translate(60, 1300)">
+    <rect width="1110" height="480" rx="12" fill="url(#grad-emerald)" stroke="#10b981" stroke-width="2"/>
+    <rect x="0" y="0" width="1110" height="56" rx="12" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+    <text x="30" y="36" fill="#a7f3d0" font-size="18" font-weight="900" letter-spacing="1.5">5. TYRE DEGRADATION INDEX (TDI) ENGINE</text>
+
+    <!-- Math Left -->
+    <g transform="translate(30, 80)">
+      <rect width="520" height="250" rx="8" fill="#022c22" stroke="#047857" stroke-width="1.5"/>
+      <text x="20" y="30" fill="#6ee7b7" font-size="14" font-weight="800">TDI SYNTHESIS &amp; TEMPORAL TRAJECTORY:</text>
+      
+      <text x="20" y="62" fill="#ffffff" font-size="13.5" font-weight="800" font-family="monospace">TDI_instant = f(mag, persist, slope, age, Q_ev)</text>
+      <text x="20" y="92" fill="#a7f3d0" font-size="14" font-weight="800" font-family="monospace">TDI_t = β · TDI_{t-1} + (1 - β) · TDI_instant</text>
+      <text x="20" y="114" fill="#34d399" font-size="11.5">(EMA Smoothing: β = 0.85 suppresses high-frequency telemetry noise)</text>
+      
+      <path d="M 20 128 L 500 128" stroke="#064e3b" stroke-width="1"/>
+      
+      <text x="20" y="152" fill="#a7f3d0" font-size="13" font-weight="800">TDI Degradation Severity Scale [0..100]:</text>
+      <text x="20" y="176" fill="#4ade80" font-size="12" font-family="monospace">• HEALTHY       : TDI &lt; 15    (Full grip capability)</text>
+      <text x="20" y="198" fill="#a3e635" font-size="12" font-family="monospace">• EARLY_WEAR    : TDI 15 - 35 (Surface abrasion begun)</text>
+      <text x="20" y="220" fill="#fbbf24" font-size="12" font-family="monospace">• MODERATE_WEAR : TDI 35 - 55 (Pace drop ~0.3-0.6s/lap)</text>
+      <text x="20" y="242" fill="#fb923c" font-size="12" font-family="monospace">• HIGH_WEAR     : TDI 55 - 75 (High thermal slip)</text>
+      <text x="20" y="264" fill="#ef4444" font-size="12" font-family="monospace">• CRITICAL_WEAR : TDI 75 - 100 (Pit window imperative)</text>
+    </g>
+
+    <!-- Explainability Right -->
+    <g transform="translate(570, 80)">
+      <rect width="510" height="250" rx="8" fill="#064e3b" stroke="#059669" stroke-width="1"/>
+      <text x="20" y="30" fill="#a7f3d0" font-size="14" font-weight="800">Dynamic Explainability Engine (Why-Panel):</text>
+      
+      <rect x="20" y="50" width="470" height="85" rx="6" fill="#022c22" stroke="#10b981" stroke-width="1"/>
+      <text x="35" y="72" fill="#4ade80" font-size="12" font-weight="700">Supporting Evidence [evidence[]]:</text>
+      <text x="35" y="92" fill="#e2e8f0" font-size="11" font-family="monospace">• "Corner exit traction deficit -0.32 m/s²"</text>
+      <text x="35" y="110" fill="#e2e8f0" font-size="11" font-family="monospace">• "Persistent understeer delta in Turn 4, 7"</text>
+      <text x="35" y="126" fill="#e2e8f0" font-size="11" font-family="monospace">• "Tyre age (19 laps) exceeds soft compound baseline"</text>
+
+      <rect x="20" y="145" width="470" height="85" rx="6" fill="#1c0a0a" stroke="#ef4444" stroke-width="1"/>
+      <text x="35" y="168" fill="#f87171" font-size="12" font-weight="700">Counter-Evidence [counter_evidence[]]:</text>
+      <text x="35" y="188" fill="#fecaca" font-size="11" font-family="monospace">• "DRS wing open — drag model reduction active"</text>
+      <text x="35" y="206" fill="#fecaca" font-size="11" font-family="monospace">• "Tailwind gust detected: 14.2 km/h on main straight"</text>
+      <text x="35" y="222" fill="#fecaca" font-size="11" font-family="monospace">• "Transient heavy braking zone attenuates confidence"</text>
+    </g>
+
+    <rect x="30" y="350" width="1050" height="100" rx="8" fill="#022c22" stroke="#047857" stroke-width="1"/>
+    <text x="50" y="382" fill="#6ee7b7" font-size="14" font-weight="800">Engine Output: TDIFrame</text>
+    <text x="50" y="410" fill="#ffffff" font-size="13" font-family="monospace">physics_tdi ∈ [0, 100], trend (RISING/FALLING/STABLE), state, evidence[], counter_evidence[]</text>
+    <text x="50" y="432" fill="#a7f3d0" font-size="12">Transmits verified physics-derived degradation score to the Fusion Layer.</text>
+  </g>
+
+  <!-- 6. MACHINE LEARNING MODEL (X: 1230, Y: 1300, W: 1110, H: 480) -->
+  <g transform="translate(1230, 1300)">
+    <rect width="1110" height="480" rx="12" fill="url(#grad-blue)" stroke="#3b82f6" stroke-width="2"/>
+    <rect x="0" y="0" width="1110" height="56" rx="12" fill="#172554" stroke="#3b82f6" stroke-width="1.5"/>
+    <text x="30" y="36" fill="#bfdbfe" font-size="18" font-weight="900" letter-spacing="1.5">6. MACHINE LEARNING MODEL (RandomForestRegressor)</text>
+
+    <!-- Features Left -->
+    <g transform="translate(30, 80)">
+      <rect width="570" height="250" rx="8" fill="#0a192f" stroke="#1d4ed8" stroke-width="1.5"/>
+      <text x="20" y="28" fill="#93c5fd" font-size="13.5" font-weight="800">40+ PHYSICS-INFORMED FEATURE VECTOR:</text>
+      
+      <text x="20" y="54" fill="#e2e8f0" font-size="11.5" font-family="monospace">• Residual Metrics : r_mean, r_std, r_slope, persistence</text>
+      <text x="20" y="76" fill="#e2e8f0" font-size="11.5" font-family="monospace">• Confounder Scores: non_tyre_score, evidence_quality</text>
+      <text x="20" y="98" fill="#e2e8f0" font-size="11.5" font-family="monospace">• Telemetry Inputs : speed, throttle, brake, gear, RPM, DRS</text>
+      <text x="20" y="120" fill="#e2e8f0" font-size="11.5" font-family="monospace">• Kinetic Energy   : E_k = 0.5 · m · v², drag_power = F_drag · v</text>
+      <text x="20" y="142" fill="#e2e8f0" font-size="11.5" font-family="monospace">• Prior Encoded    : tyre_age_laps, compound (C1, C2, C3, C4, C5)</text>
+      <text x="20" y="164" fill="#e2e8f0" font-size="11.5" font-family="monospace">• Sliding Windows  : 5-frame, 15-frame, 30-frame delta trends</text>
+      
+      <rect x="20" y="182" width="530" height="56" rx="6" fill="#1e3a8a" stroke="#3b82f6" stroke-width="1"/>
+      <text x="35" y="206" fill="#ffffff" font-size="12" font-family="monospace">Artifact: data/ml/baseline_model.joblib (100 Trees)</text>
+      <text x="35" y="226" fill="#93c5fd" font-size="11.5">Trained on historical Monza / Spa FastF1 qualifying &amp; race telemetry</text>
+    </g>
+
+    <!-- Inference & OOD Right -->
+    <g transform="translate(620, 80)">
+      <rect width="460" height="250" rx="8" fill="#0f172a" stroke="#2563eb" stroke-width="1"/>
+      <text x="20" y="30" fill="#60a5fa" font-size="14" font-weight="800">AI Inference &amp; Out-of-Distribution Guard:</text>
+      
+      <rect x="20" y="50" width="420" height="95" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="1"/>
+      <text x="35" y="75" fill="#ffffff" font-size="13.5" font-weight="800" font-family="monospace">ai_inferred_degradation ∈ [0, 100]</text>
+      <text x="35" y="98" fill="#38bdf8" font-size="13" font-weight="800" font-family="monospace">model_reliability ∈ [0, 1]</text>
+      <text x="35" y="122" fill="#cbd5e1" font-size="11" font-family="monospace">reliability = 1.0 - Mahalanobis(X_t, μ_train) / σ</text>
+
+      <text x="20" y="168" fill="#93c5fd" font-size="12.5" font-weight="700">Feature Importance Rankings (MDI):</text>
+      <text x="20" y="192" fill="#e2e8f0" font-size="11.5" font-family="monospace">1. persistence_ratio (0.24)   2. r_slope (0.19)</text>
+      <text x="20" y="214" fill="#e2e8f0" font-size="11.5" font-family="monospace">3. tyre_age_laps (0.16)       4. kinetic_energy (0.12)</text>
+      <text x="20" y="234" fill="#fbbf24" font-size="11">Explicit: Modelled prediction, NOT a physical measurement</text>
+    </g>
+
+    <rect x="30" y="350" width="1050" height="100" rx="8" fill="#0a192f" stroke="#1d4ed8" stroke-width="1"/>
+    <text x="50" y="382" fill="#60a5fa" font-size="14" font-weight="800">Engine Output: AIInferenceFrame</text>
+    <text x="50" y="410" fill="#ffffff" font-size="13" font-family="monospace">ai_tdi ∈ [0, 100], model_reliability ∈ [0, 1], feature_importance[]</text>
+    <text x="50" y="432" fill="#bfdbfe" font-size="12">Transmits ML statistical prediction to the Dual-Engine Fusion Layer.</text>
+  </g>
+
+  <!-- CONNECTOR LEVEL 3 -> LEVEL 4 -->
+  <path d="M 615 1780 L 615 1820 L 1200 1820 L 1200 1845" fill="none" stroke="#10b981" stroke-width="2.5" stroke-dasharray="6,6"/>
+  <path d="M 1785 1780 L 1785 1820 L 1200 1820" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="6,6"/>
+
+  <!-- ================= LEVEL 4: FUSION & PRESENTATION OUTPUTS ================= -->
+
+  <!-- 7. PHYSICS + AI FUSION ENGINE (X: 60, Y: 1845, W: 1110, H: 480) -->
+  <g transform="translate(60, 1845)">
+    <rect width="1110" height="480" rx="12" fill="url(#grad-red)" stroke="#ef4444" stroke-width="2"/>
+    <rect x="0" y="0" width="1110" height="56" rx="12" fill="#450a0a" stroke="#ef4444" stroke-width="1.5"/>
+    <text x="30" y="36" fill="#fca5a5" font-size="18" font-weight="900" letter-spacing="1.5">7. PHYSICS + AI FUSION ENGINE</text>
+
+    <!-- Law Box Left -->
+    <g transform="translate(30, 80)">
+      <rect width="520" height="250" rx="8" fill="#1f0b0b" stroke="#991b1b" stroke-width="1.5"/>
+      <text x="20" y="30" fill="#f87171" font-size="14" font-weight="800">WEIGHTED FUSION GOVERNING LAW:</text>
+      
+      <rect x="15" y="50" width="490" height="65" rx="6" fill="#3f0f0f" stroke="#ef4444" stroke-width="2" filter="url(#glow-red)"/>
+      <text x="28" y="91" fill="#ffffff" font-size="16" font-weight="900" font-family="monospace">Final_TDI = α · Physics_TDI + (1 - α) · AI_TDI</text>
+
+      <text x="20" y="145" fill="#fca5a5" font-size="13.5" font-family="monospace">• Default Physics Bias : α = 0.60  (60% Physics, 40% AI)</text>
+      <text x="20" y="172" fill="#fca5a5" font-size="13.5" font-family="monospace">• Adaptive Adjust      : α_eff = α · reliability + (1 - Q_ev)</text>
+      <text x="20" y="198" fill="#fca5a5" font-size="13.5" font-family="monospace">• Range Clamping       : Final_TDI = clip(Final_TDI, 0.0, 100.0)</text>
+      <text x="20" y="226" fill="#fecaca" font-size="12">Core Principle: All three metrics (Physics_TDI, AI_TDI, Final_TDI)</text>
+      <text x="20" y="242" fill="#fecaca" font-size="12">are permanently exposed — NEVER collapsed into a black box.</text>
+    </g>
+
+    <!-- Audit & Discrepancy Right -->
+    <g transform="translate(570, 80)">
+      <rect width="510" height="250" rx="8" fill="#1a0808" stroke="#7f1d1d" stroke-width="1"/>
+      <text x="20" y="30" fill="#fca5a5" font-size="14" font-weight="800">Discrepancy Audit &amp; Trust Guard:</text>
+      
+      <rect x="20" y="50" width="470" height="95" rx="6" fill="#2b0d0d" stroke="#ef4444" stroke-width="1"/>
+      <text x="35" y="78" fill="#ffffff" font-size="13.5" font-weight="800" font-family="monospace">Discrepancy Δ = | Physics_TDI - AI_TDI |</text>
+      <text x="35" y="102" fill="#fbbf24" font-size="12.5" font-family="monospace">If Δ &gt; 25.0 → FLAG: "HIGH_MODEL_DISCREPANCY"</text>
+      <text x="35" y="124" fill="#fecaca" font-size="11.5">Protects against AI hallucination or unmodeled track debris.</text>
+
+      <text x="20" y="172" fill="#fca5a5" font-size="13" font-weight="800">Composite Confidence Score:</text>
+      <text x="20" y="196" fill="#ffffff" font-size="12.5" font-family="monospace">Confidence = 0.5·Q_ev + 0.3·reliability + 0.2·(1 - r_std/σ)</text>
+      <text x="20" y="222" fill="#4ade80" font-size="12" font-family="monospace">Overall System Confidence Metric ∈ [0, 1]</text>
+    </g>
+
+    <rect x="30" y="350" width="1050" height="100" rx="8" fill="#2b0d0d" stroke="#b91c1c" stroke-width="1"/>
+    <text x="50" y="382" fill="#fca5a5" font-size="14" font-weight="800">WebSocket Broadcasting Gateway:</text>
+    <text x="50" y="410" fill="#ffffff" font-size="13" font-family="monospace">ws://localhost:8000/ws/telemetry streams UnifiedIntelligencePayload at 20 Hz</text>
+    <text x="50" y="432" fill="#fecaca" font-size="12">Pushes real-time unified frame state to React Three.js Frontend and Blender Bridge simultaneously.</text>
+  </g>
+
+  <!-- 8. OUTPUT PRESENTATION & DUAL DIGITAL TWIN (X: 1230, Y: 1845, W: 1110, H: 480) -->
+  <g transform="translate(1230, 1845)">
+    <rect width="1110" height="480" rx="12" fill="url(#grad-cyan)" stroke="#06b6d4" stroke-width="2"/>
+    <rect x="0" y="0" width="1110" height="56" rx="12" fill="#082f49" stroke="#06b6d4" stroke-width="1.5"/>
+    <text x="30" y="36" fill="#38bdf8" font-size="18" font-weight="900" letter-spacing="1.5">8. DUAL PRESENTATION &amp; 3D DIGITAL TWIN OUTPUTS</text>
+
+    <!-- Sub-A React Three.js -->
+    <g transform="translate(30, 80)">
+      <rect width="520" height="370" rx="8" fill="#051829" stroke="#0284c7" stroke-width="1.5"/>
+      <rect x="0" y="0" width="520" height="44" rx="8" fill="#072740" stroke="#0284c7" stroke-width="1"/>
+      <text x="20" y="28" fill="#38bdf8" font-size="14" font-weight="800">A. REACT 19 + THREE.JS DASHBOARD</text>
+
+      <text x="20" y="72" fill="#e2e8f0" font-size="12.5" font-weight="700">Web Command Center Modules:</text>
+      <text x="20" y="98" fill="#93c5fd" font-size="12" font-family="monospace">1. DigitalTwinCanvas (Three.js WebGL):</text>
+      <text x="35" y="120" fill="#cbd5e1" font-size="11.5">• Interactive 3D F1 Car procedural chassis</text>
+      <text x="35" y="138" fill="#cbd5e1" font-size="11.5">• Wheel spin velocity: ω = v / R_wheel</text>
+      <text x="35" y="156" fill="#cbd5e1" font-size="11.5">• DRS flap tilt animation: 0° → 18°</text>
+      <text x="35" y="174" fill="#cbd5e1" font-size="11.5">• Dynamic tyre heatmap: Green → Amber → Red</text>
+
+      <text x="20" y="204" fill="#93c5fd" font-size="12" font-family="monospace">2. GlobalTDICard: Radial Gauge (0-100), State Badge</text>
+      <text x="20" y="226" fill="#93c5fd" font-size="12" font-family="monospace">3. WhyPanel: Real-time evidence &amp; counter-evidence</text>
+      <text x="20" y="248" fill="#93c5fd" font-size="12" font-family="monospace">4. ConfoundersPanel: Active aerodynamic &amp; brake flags</text>
+      <text x="20" y="270" fill="#93c5fd" font-size="12" font-family="monospace">5. TDITrajectoryChart: Physics vs AI vs Fusion history</text>
+      <text x="20" y="292" fill="#93c5fd" font-size="12" font-family="monospace">6. ReplayControlBar: Seek, Play, Pause, Speed (0.5x..4x)</text>
+
+      <rect x="20" y="310" width="480" height="44" rx="6" fill="#0b233a" stroke="#0369a1" stroke-width="1"/>
+      <text x="35" y="338" fill="#4ade80" font-size="12" font-family="monospace">60 FPS Fluid WebGL Loop | Client WebSocket Stream</text>
+    </g>
+
+    <!-- Sub-B Blender Bridge -->
+    <g transform="translate(570, 80)">
+      <rect width="510" height="370" rx="8" fill="#051829" stroke="#0284c7" stroke-width="1.5"/>
+      <rect x="0" y="0" width="510" height="44" rx="8" fill="#072740" stroke="#0284c7" stroke-width="1"/>
+      <text x="20" y="28" fill="#38bdf8" font-size="14" font-weight="800">B. BLENDER PHOTOREALISTIC 3D TWIN</text>
+
+      <text x="20" y="72" fill="#e2e8f0" font-size="12.5" font-weight="700">Physical F1 / F2 Mechanical-Thermal Model:</text>
+      <text x="20" y="98" fill="#93c5fd" font-size="12" font-family="monospace">Blender Python Bridge (tyretrace_live_bridge.py):</text>
+      <text x="35" y="120" fill="#cbd5e1" font-size="11.5">• Runs via bpy.app.timers (Thread-safe inside Blender)</text>
+      <text x="35" y="138" fill="#cbd5e1" font-size="11.5">• Wheel Euler Rotation: θ_wheel += ω · Δt</text>
+      <text x="35" y="156" fill="#cbd5e1" font-size="11.5">• Steering Rack Angle: δ = f(a_y, speed)</text>
+      <text x="35" y="174" fill="#cbd5e1" font-size="11.5">• Shader Node Wear: Roughness &amp; Thermal Emission</text>
+
+      <rect x="20" y="195" width="470" height="95" rx="6" fill="#0b233a" stroke="#0369a1" stroke-width="1"/>
+      <text x="35" y="218" fill="#38bdf8" font-size="12" font-weight="800">BlenderFramePayload Schema:</text>
+      <text x="35" y="240" fill="#ffffff" font-size="11" font-family="monospace">BlenderFramePayload(wheel_angular_vel, steering_rad,</text>
+      <text x="35" y="258" fill="#e0f2fe" font-size="11" font-family="monospace">drs_pitch, tyre_wear_colors=[FL,FR,RL,RR],</text>
+      <text x="35" y="276" fill="#e0f2fe" font-size="11" font-family="monospace">camera_orbit, tdi_hud_text, timestamp)</text>
+
+      <rect x="20" y="310" width="470" height="44" rx="6" fill="#071a2e" stroke="#0e3b5e" stroke-width="1"/>
+      <text x="35" y="338" fill="#4ade80" font-size="12" font-family="monospace">Cycles &amp; Eevee GPU Ray-Traced Viewport Synchronization</text>
+    </g>
+  </g>
+
+</svg>
