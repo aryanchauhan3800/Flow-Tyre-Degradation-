@@ -55,7 +55,7 @@ export const Footer: React.FC = () => {
           </button>
 
           <a
-            href="https://github.com/aryanchauhan3800/Flow-Tyre-Degradation-"
+            href="https://github.com/aryanchauhan3800/tyre-degradation-intelligence"
             target="_blank"
             rel="noopener noreferrer"
             className="action-btn red-btn"
